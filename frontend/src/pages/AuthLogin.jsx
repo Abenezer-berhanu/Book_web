@@ -22,13 +22,13 @@ return (
     <div>
       <Card sx={{maxWidth: "450px",minWidth : "250px", margin: '2em auto', padding:'1em'}}>
         <Box sx={{ display: 'flex', flexDirection:'column', gap: '.7em', marginBottom: '2em'}}>
-        <Typography sx={{color: '#101828', fontSize : '1.8rem' , fontWeight:'600', textAlign: 'center'}}>Log in to your account</Typography>
+        <Typography sx={{color: '#101828', fontSize : '1.8rem' , fontWeight:'600', textAlign: 'center'}}>Log in</Typography>
         <Typography variant="p" sx={{ fontSize : '.85rem', color: '#667085', textAlign: 'center'}}>Welcome back! Please enter your details.</Typography>
         </Box>
         <form>
         <Box sx={{ width : '80%', display: 'flex', flexDirection: 'column', margin:'auto'}}>
-        <InputLabel  sx={{color: 'black'}}>Name</InputLabel>
-          <Input placeholder="Jhon Doe" sx={{ marginBottom: '2em'}}/>
+        <InputLabel  sx={{color: 'black'}}>Email</InputLabel>
+          <Input placeholder="JhonDoe@gmail.com" sx={{ marginBottom: '2em'}}/>
           <InputLabel sx={{color: 'black'}}>Password</InputLabel>
           <Input
             placeholder="password"
@@ -57,8 +57,7 @@ return (
         </form>
         <Button variant="outlined" sx={{ width: '100%', height:'3em',margin: '1em auto' }}><img src={googleIcon} alt="" style={{width: '25px', margin:'0 .5em'}}/>Sign in with Google</Button>
         <Box sx={{display:'flex', alignItems: 'center', justifyContent:'center'}}>
-          <Typography sx={{ color: '#667085', fontSize: '.9rem'}}>Don't have an account?</Typography>
-          <Button sx={{ fontWeight:'bold'}}>Sign up</Button>
+          <Button sx={{ fontWeight:'bold'}}>Sign up or Register</Button>
         </Box>
       </Card>
     </div>
