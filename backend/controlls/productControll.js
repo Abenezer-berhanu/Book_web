@@ -11,7 +11,7 @@ import jwt from "jsonwebtoken";
 ////////////////////////////////////////////////////////////////////////
 const getAllProducts = async (req, res) => {
   try {
-    const products = await productModel.find({}).populate("users");
+    const products = await productModel.find({});
     if (!products) {
       res.status(404).json({ message: "No product found" });
     }
