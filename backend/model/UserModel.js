@@ -8,17 +8,21 @@ const UserSchema = new mongoose.Schema({
     email : {
         type : String,
         required : [true, 'email is required'],
-        unique : true
+        unique : true,
+        lowercase : true
     },
     password : {
         type : String,
         required : [true, 'password is required']
     },
-    userProduct : [{
-        type : mongoose.Types.ObjectId,
-        ref : 'Products',
-        required : 'true'
-    }]
+    user_id: {
+        type : String,
+        required : true
+    },
+    isAdmin : {
+        type : String,
+        default : false
+    }
 }, {timestamps : true})
 
 export default mongoose.model('User', UserSchema)

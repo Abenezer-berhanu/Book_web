@@ -1,9 +1,10 @@
 import mongoose from "mongoose";
 
 const productSchema = new mongoose.Schema({
-  title: {
+  name: {
     type: String,
     required: true,
+    min: 5
   },
   price: {
     type: Number,
@@ -12,10 +13,12 @@ const productSchema = new mongoose.Schema({
   description: {
     type: String,
     required: true,
+    min: 10
   },
   category: {
     type: String,
     required: true,
+    min: 4
   },
   image: {
     type: String,
@@ -24,31 +27,22 @@ const productSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-    ref: "User",
   },
-  rating: [
-    {
-      rate: {
-        type: Number,
-        required: true,
-        default: 0,
-      },
-      count: {
-        type: Number,
-        required: true,
-        default: 0,
-      },
-    },
-  ],
+  rating: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
   numLike: {
     type: Number,
     required: true,
     default: 0,
   },
-  comment: {
-    type: String,
-    required: true,
-  },
+  amount : {
+    type : Number,
+    required : true,
+    default : 0
+  }
 });
 
-export default mongoose.model('Product', productSchema)
+export default mongoose.model("Product", productSchema);
