@@ -83,7 +83,6 @@ const signup = async (req, res) => {
 const logout = (req, res) => {
   let { cookie } = req.headers;
   res.cookie("token", "hello", { httpOnly: true, maxAge: 1 });
-  localStorage.removeItem("email")
   res.status(200).json({message : 'cookie expired'})
 };
 
