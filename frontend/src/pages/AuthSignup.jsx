@@ -1,4 +1,4 @@
-import { Card, Typography, Box, Button } from "@mui/material";
+import { Card, Typography, Box, Button, Stack } from "@mui/material";
 import * as React from "react";
 import IconButton from "@mui/material/IconButton";
 import Input from "@mui/material/Input";
@@ -11,6 +11,7 @@ import googleIcon from "../assets/googleIcon.ico.png";
 
 export default function AuthSignup() {
   const [showPassword, setShowPassword] = React.useState(false);
+  const [passwordRequirement , setPasswordRequirement] = React.useState(false)
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -56,9 +57,8 @@ export default function AuthSignup() {
             variant="p"
             sx={{ fontSize: ".85rem", color: "#667085", textAlign: "center" }}
           >
-            Please login after signing up
+            Please login after sign up
           </Typography>
-          <hr />
         </Box>
         <form>
           <Box
@@ -93,78 +93,72 @@ export default function AuthSignup() {
               }
             />
           </Box>
-          <Box
+          {passwordRequirement && 
+          <Stack spacing={.3} sx={{margin : '1em 0'}}>
+          <Typography
+            variant="p"
             sx={{
-              margin: "1rem 0",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "start",
-              marginLeft: "10%",
+              fontSize: ".85rem",
+              color: "#667085",
+              textAlign: "center",
+              display: "block",
+              paddingTop: ".3em",
             }}
           >
-            <Typography
-              variant="p"
-              sx={{
-                fontSize: ".85rem",
-                color: "#667085",
-                textAlign: "center",
-                display: "block",
-                paddingTop: ".3em",
-              }}
-            >
-              Must be at least 8 char.
-            </Typography>
-            <Typography
-              variant="p"
-              sx={{
-                fontSize: ".85rem",
-                color: "#667085",
-                textAlign: "center",
-                display: "block",
-                paddingTop: ".3em",
-              }}
-            >
-              Must have at least 1 special char.
-            </Typography>
-            <Typography
-              variant="p"
-              sx={{
-                fontSize: ".85rem",
-                color: "#667085",
-                textAlign: "center",
-                display: "block",
-                paddingTop: ".3em",
-              }}
-            >
-              Must have at least 1 capital latter.
-            </Typography>
-            <Typography
-              variant="p"
-              sx={{
-                fontSize: ".85rem",
-                color: "#667085",
-                textAlign: "center",
-                display: "block",
-                paddingTop: ".3em",
-              }}
-            >
-              must have at least 1 small latter
-            </Typography>
-            <Typography
-              variant="p"
-              sx={{
-                fontSize: ".85rem",
-                color: "#667085",
-                textAlign: "center",
-                display: "block",
-                paddingTop: ".3em",
-              }}
-            >
-              must have at least 1 number
-            </Typography>
-          </Box>
+            Must be at least 8 char.
+          </Typography>
+          <Typography
+            variant="p"
+            sx={{
+              fontSize: ".85rem",
+              color: "#667085",
+              textAlign: "center",
+              display: "block",
+              paddingTop: ".3em",
+            }}
+          >
+            Must have at least 1 special char.
+          </Typography>
+          <Typography
+            variant="p"
+            sx={{
+              fontSize: ".85rem",
+              color: "#667085",
+              textAlign: "center",
+              display: "block",
+              paddingTop: ".3em",
+            }}
+          >
+            Must have at least 1 capital latter.
+          </Typography>
+          <Typography
+            variant="p"
+            sx={{
+              fontSize: ".85rem",
+              color: "#667085",
+              textAlign: "center",
+              display: "block",
+              paddingTop: ".3em",
+            }}
+          >
+            must have at least 1 small latter
+          </Typography>
+          <Typography
+            variant="p"
+            sx={{
+              fontSize: ".85rem",
+              color: "#667085",
+              textAlign: "center",
+              display: "block",
+              paddingTop: ".3em",
+            }}
+          >
+            must have at least 1 number
+          </Typography>
+        </Stack>
+          }
 
-          <Button variant="contained" sx={{ width: "100%", height: "3em" }}>
+          <Button variant="contained" sx={{ width: "100%", height: "3em", marginTop: '1em' }}>
             Sign up
           </Button>
         </form>
