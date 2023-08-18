@@ -94,7 +94,7 @@ const updateProduct = async(req, res) => {
     amount,
   } = req.body;
   const id = req.params.id
-
+  
   const updatedProduct = await productModel.findByIdAndUpdate(id, {
     name,
     price,
@@ -114,7 +114,7 @@ const deleteProduct = async (req, res) => {
         res.send(404).json({ error: "Authentication token not found" });
       }
      const tooken = cookie.split("=")[1];
-    const { id : user_id } = jwt.verify(tooken, process.env.TOKEN_KEY);
+    const { id : user_id} = jwt.verify(tooken, process.env.TOKEN_KEY);
     let deletedItem;
     try {
         const user = await UserModel.findById(user_id)
