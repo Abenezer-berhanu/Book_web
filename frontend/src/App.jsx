@@ -23,7 +23,7 @@ export default function App() {
   const isLoggedIn = useSelector((state) => state.loggedIn.isActive);
   const dispatch = useDispatch();
   useEffect(() => {
-    if (!document.cookie) {
+    if (document.cookie) {
       dispatch(login());
     }
   }, [dispatch]);

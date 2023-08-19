@@ -52,6 +52,9 @@ const signup = async (req, res) => {
   if (!name || !email || !password) {
     return res.status(400).json({ message: "all fields are required" });
   }
+  if(name.length < 4){
+    res.status(400).json({message : "Minimum name length is 4"})
+  }
   try {
     const user = await UserModel.findOne({ email });
     if (user) {
