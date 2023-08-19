@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -25,6 +25,8 @@ function Navbar() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const isLoggedIn = useSelector((state) => state.loggedIn.isActive);
+
+  const navigate = useNavigate()
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);

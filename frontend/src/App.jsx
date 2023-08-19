@@ -1,7 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { read_cookie } from "sfcookies";
 //////////////////////////////////////////////////////////////////// importing from components
 import Navbar from "./components/Navbar";
 import { login } from "./store/userSlice";
@@ -18,12 +17,13 @@ import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import Products from "./pages/Products";
 import Notfound from "./pages/Notfound";
+///////////////////////////////////////////////////////////importing from file
 
 export default function App() {
   const isLoggedIn = useSelector((state) => state.loggedIn.isActive);
   const dispatch = useDispatch();
   useEffect(() => {
-    if (document.cookie) {
+    if (!document.cookie) {
       dispatch(login());
     }
   }, [dispatch]);

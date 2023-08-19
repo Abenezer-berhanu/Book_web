@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 /////////////////////////////////////////////////////////////////////////////////////////importing from file
 import googleIcon from "../assets/googleIcon.ico.png";
-import { API_URI } from "../../constants";
+import { API_URI } from "../constants";
 
 export default function AuthLogin() {
   const [showPassword, setShowPassword] = React.useState(false);
@@ -23,7 +23,7 @@ export default function AuthLogin() {
   });
   const [error, setError] = React.useState("");
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const isLoggedIn = useSelector((state) => state.loggedIn.isActive);
   const dispatch = useDispatch();
@@ -43,7 +43,6 @@ export default function AuthLogin() {
 
   const handleSignin = async () => {
     setError("");
-    console.log(isLoggedIn);
     try {
       const res = await axios.post(`${API_URI}/user/login`, {
         email: input.email,
@@ -57,12 +56,9 @@ export default function AuthLogin() {
         localStorage.setItem("user_data", JSON.stringify(user_data));
         bake_cookie("token", res.token);
         dispatch(login());
-        console.log(isLoggedIn);
-
-        /////////////////////////////
+        navigate('/home')
       }
     } catch (error) {
-      console.log(error)
       setError(error.response.data.message);
     }
   };
@@ -200,7 +196,7 @@ export default function AuthLogin() {
             justifyContent: "center",
           }}
         >
-          <Button sx={{ fontWeight: "bold" }}>Sign up or Register</Button>
+          <Button sx={{ fontWeight: "bold" }} onClick={()=>{navigate('/signup')}}>Sign up or Register</Button>
         </Box>
       </Card>
     </div>
