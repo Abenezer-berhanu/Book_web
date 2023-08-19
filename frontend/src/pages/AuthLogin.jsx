@@ -7,8 +7,10 @@ import InputAdornment from "@mui/material/InputAdornment";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import axios from "axios";
-import {bake_cookie} from 'sfcookies'
+import { bake_cookie } from "sfcookies";
+import { login, logout } from "../store/userSlice";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 /////////////////////////////////////////////////////////////////////////////////////////importing from file
 import googleIcon from "../assets/googleIcon.ico.png";
 import { API_URI } from "../../constants";
@@ -19,9 +21,12 @@ export default function AuthLogin() {
     email: "",
     password: "",
   });
-  const [error, setError] = React.useState('')
+  const [error, setError] = React.useState("");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
+  const isLoggedIn = useSelector((state) => state.loggedIn.isActive);
+  const dispatch = useDispatch();
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -37,27 +42,28 @@ export default function AuthLogin() {
   };
 
   const handleSignin = async () => {
-    setError('')
+    setError("");
+    console.log(isLoggedIn);
     try {
       const res = await axios.post(`${API_URI}/user/login`, {
         email: input.email,
         password: input.password,
       });
-      console.log(res)
-      if(res.status === 200){
+      if (res.status === 200) {
         const user_data = {
-          email : res.data.email,
-          name : res.data.name
-        }
-        localStorage.setItem('user_data', JSON.stringify(user_data))
-        bake_cookie('token', res.token)
-        
-        navigate('/home')
+          email: res.data.email,
+          name: res.data.name,
+        };
+        localStorage.setItem("user_data", JSON.stringify(user_data));
+        bake_cookie("token", res.token);
+        dispatch(login());
+        console.log(isLoggedIn);
+
+        /////////////////////////////
       }
     } catch (error) {
-      if(error){
-        setError(error.response.data.message)
-      }
+      console.log(error)
+      setError(error.response.data.message);
     }
   };
   return (
@@ -130,9 +136,21 @@ export default function AuthLogin() {
               }
             />
           </Box>
-          {error && <div style={{ margin : ' 2em auto', border : '2px solid red', width: "fit-content", padding : '15px', borderRadius : '5px', textAlign: 'center', fontSize: '12px'}}>
-            <p>{error}</p>
-          </div>}
+          {error && (
+            <div
+              style={{
+                margin: " 2em auto",
+                border: "2px solid red",
+                width: "fit-content",
+                padding: "15px",
+                borderRadius: "5px",
+                textAlign: "center",
+                fontSize: "12px",
+              }}
+            >
+              <p>{error}</p>
+            </div>
+          )}
           <Box
             className="login-checkbox-box"
             sx={{
