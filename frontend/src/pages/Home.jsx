@@ -1,6 +1,9 @@
+import HomeAutoScroll from "../components/HomeAutoScroll";
 
 export default function Home() {
   return (
-    <div>Home</div>
+    <div>
+      <HomeAutoScroll />
+    </div>
   )
 }

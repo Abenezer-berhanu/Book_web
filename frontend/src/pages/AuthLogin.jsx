@@ -52,11 +52,12 @@ export default function AuthLogin() {
         const user_data = {
           email: res.data.email,
           name: res.data.name,
+          isAdmin : res.data.isAdmin
         };
         localStorage.setItem("user_data", JSON.stringify(user_data));
         bake_cookie("token", res.token);
         dispatch(login());
-        navigate('/home')
+        navigate('/')
       }
     } catch (error) {
       setError(error.response.data.message);

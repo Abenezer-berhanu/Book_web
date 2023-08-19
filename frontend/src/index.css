@@ -11,3 +11,40 @@
     align-items: center;
   }
 }
+.logo{
+  width: 35px;
+  margin: 0 10px 0 0;
+  border-radius: 50%;
+}
+.carousel{
+  position: relative;
+  height: 60vh;
+  top: 20px;
+  display: flex;
+  width: 80%;
+  left: 10%;
+  background-color: rgb(18, 14, 48);
+  overflow: hidden;
+}
+.carousel img{
+  height: 60vh;
+  width: 50%;
+  object-fit: cover;
+}
+.carousel .carousel-text{
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+}
+@media(width < 700px){
+  .carousel{
+    height: 40vh;
+    
+  }
+  .carousel img{
+    height: 40vh;
+    width: 100%;
+    object-fit: cover;
+  }
+  }
