@@ -6,6 +6,7 @@ import cors from 'cors'
 //////////////////////////////////////////////importing from my file
 import userRouter from "./routes/userRoute.js";
 import productRouter from "./routes/productRoute.js"
+import connectDB from "./config/db.js";
 
 const app = express();
 app.use(express.json());
@@ -21,12 +22,8 @@ app.get("/", (req, res) => {
     console.log(req.header())
 })
 
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() =>
-    app.listen(port, () => {
-      console.log(`connected to db`);
-      console.log("listning to port " + port);
-    })
-  )
-  .catch((error) => console.log(`error occured at conneting mongo${error}`));
+connectDB()
+
+app.listen(port, () => {
+  console.log("listning to port " + port);
+})
