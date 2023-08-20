@@ -10,7 +10,7 @@ export default function HomeAutoScroll() {
         src={logo}
         alt="" 
         />
-        <Carousel.Caption>
+        <Carousel.Caption className='carousel-text'>
           <h3>First slide label</h3>
           
         </Carousel.Caption>
@@ -21,7 +21,7 @@ export default function HomeAutoScroll() {
         src="https://images.pexels.com/photos/9566338/pexels-photo-9566338.jpeg?auto=compress&cs=tinysrgb&w=600"
         alt="" 
         />
-        <Carousel.Caption>
+        <Carousel.Caption className='carousel-text'>
           <h3>Second slide label</h3>
         </Carousel.Caption>
       </Carousel.Item>
