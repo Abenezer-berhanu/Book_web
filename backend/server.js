@@ -18,6 +18,7 @@ const port = 3000;
 app.use("/products", productRouter)
 app.use("/user", userRouter);
 
+
 app.get("/", (req, res) => {
     console.log(req.header())
 })

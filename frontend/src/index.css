@@ -36,13 +36,16 @@
 .carousel img {
   height: 60vh;
   width: 50%;
-  object-fit: cover;
 }
 .carousel .carousel-text {
   width: 100%;
   left: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
+}
+.carousel .carousel-text h3{
+  font-size: 1.5rem;
+  margin: 10px 0;
 }
 @media (width < 700px) {
   .carousel {
@@ -51,7 +54,7 @@
   .carousel img {
     height: 40vh;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
   }
 }
 /* //////////////////////////////////////////////////////////////// working on product  */
@@ -79,9 +82,6 @@
 }
 @media (width < 650px) {
   .product-card-container{
-    display: grid;
-    border: 2px solid black;
-    gap: .5em;
     grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
   }
 }

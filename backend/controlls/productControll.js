@@ -21,6 +21,19 @@ const getAllProducts = async (req, res) => {
   }
 };
 
+// @get top products
+// @/topProducts
+// @get req
+////////////////////////////////////////////////////////////////////////
+const getTopProducts = async (req, res) => {
+  try {
+    const products = await productModel.find({category : 'electronics'}).sort({ rating : -1}).limit(3);
+    res.status(200).json({ products });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // @adding product
 // @/user/addProducts
 // @post req
@@ -130,4 +143,4 @@ const deleteProduct = async (req, res) => {
     }
 }
 
-export { getAllProducts, addProduct , updateProduct, deleteProduct};
+export { getAllProducts, addProduct , updateProduct, deleteProduct, getTopProducts};
