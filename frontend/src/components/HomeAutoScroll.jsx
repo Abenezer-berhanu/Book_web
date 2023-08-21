@@ -1,41 +1,34 @@
-import {Carousel} from 'react-bootstrap'
-import logo from '../assets/logo.png'
+import { Carousel } from "react-bootstrap";
+import axios from "axios";
+import {API_URI} from "../constants";
+import { useEffect, useState } from "react";
+
 export default function HomeAutoScroll() {
+  const [products, setProducts] = useState();
+
+  const getTopProducts = async () => {
+    const res = await axios(`${API_URI}/products/topProducts`);
+    const result = res.data.products;
+    setProducts(result);
+  };
+  useEffect(()=>{
+    getTopProducts()
+  },[])
   return (
-    <div >
-    <Carousel className='carousel'>
-      <Carousel.Item interval={4000}>
-        <img 
-        className=''
-        src={logo}
-        alt="" 
-        />
-        <Carousel.Caption className='carousel-text'>
-          <h3>First slide label</h3>
-          
-        </Carousel.Caption>
-      </Carousel.Item>
-      <Carousel.Item interval={4000}>
-      <img 
-        className=''
-        src="https://images.pexels.com/photos/9566338/pexels-photo-9566338.jpeg?auto=compress&cs=tinysrgb&w=600"
-        alt="" 
-        />
-        <Carousel.Caption className='carousel-text'>
-          <h3>Second slide label</h3>
-        </Carousel.Caption>
-      </Carousel.Item>
-      <Carousel.Item interval={4000}>
-      <img 
-        className=''
-        src="https://images.pexels.com/photos/10141956/pexels-photo-10141956.jpeg?auto=compress&cs=tinysrgb&w=600"
-        alt="" 
-        />
-        <Carousel.Caption className='carousel-text'>
-          <h3>Third slide label</h3>
-        </Carousel.Caption>
-      </Carousel.Item>
-    </Carousel>
+    <div>
+      <Carousel className="carousel">
+        {products &&
+          products.map((product) => {
+            return (
+              <Carousel.Item interval={4000} key={product._id}>
+                <img src={product.image} alt={product.name} />
+                <Carousel.Caption className="carousel-text">
+                  <h3>{product.name}</h3>
+                </Carousel.Caption>
+              </Carousel.Item>
+            );
+          })}
+      </Carousel>
     </div>
-  )
+  );
 }
