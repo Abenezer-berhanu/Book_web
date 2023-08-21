@@ -31,7 +31,13 @@ export default function App() {
     <>
       <Routes>
         <Route element={<Navbar />}>
-          <Route index element={<Home />} />
+          <Route path="/" element={<Home />} >
+            <Route path="/" element={<Products />} />
+            <Route
+                  path="/myProducts"
+                  element={<UserProducts />}
+                />
+          </Route>
           {!isLoggedIn && (
             <>
               <Route path="/login" element={<AuthLogin />} />
@@ -46,11 +52,8 @@ export default function App() {
               <Route path="/admin/login" element={<AdminLogin />} />
               <Route path="/admin" element={<AdminDashboard />} />
               <Route path="/products" element={<ProductsLayout />}>
-                <Route path="/products" element={<Products />} />
-                <Route
-                  path="/products/myProducts/"
-                  element={<UserProducts />}
-                />
+                
+                
               </Route>
             </>
           )}
