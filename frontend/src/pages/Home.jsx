@@ -1,27 +1,45 @@
-import { Col, ListGroup, Row } from "react-bootstrap";
-import { Button } from "@mui/material";
+import { Button} from "@mui/material";
 import HomeAutoScroll from "../components/HomeAutoScroll";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import {useDispatch, useSelector} from 'react-redux'
 import { getProducts } from "../store/productSlice";
-import { useEffect } from "react";
-import Product from "../components/Product";
-import ReactLoading from 'react-loading'
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { Outlet , useNavigate} from "react-router-dom";
 
 export default function Home() {
-  const {data , status} = useSelector(state => state.product)
-  const dispatch = useDispatch()
+  const [productButton, setProductButton] = useState(true)
+  const [myProductButton, setmyProductButton] = useState(false)
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   useEffect(() => {
-    dispatch(getProducts())
-  },[])
-  
+    dispatch(getProducts());
+  }, []);
+
+  const productClick = () => {
+    setmyProductButton(false)
+    setProductButton(true)
+    navigate('/')
+  }
+  const myProductClick = () => {
+    setProductButton(false)
+    setmyProductButton(true)
+    navigate('/myProducts')
+  }
+
   return (
     <div className="home-wrapper">
       <HomeAutoScroll />
-      <Row class="d-flex justify-content-center w-100">
+      <div style={{ display: "flex", gap: "10px"}}>
+          <Button size="small" onClick={productClick}><strong style={{ color : productButton ? '' : 'black'}}>Products</strong></Button>
+          <Button size="small" onClick={myProductClick}><strong style={{ color : myProductButton ? '' : 'black'}}>My products</strong></Button>
+      </div>
+      <Outlet/>
+    </div>
+  );
+}
+
+{
+  /* <Row>
         <Col md={2}>
           <ListGroup>
             <ListGroup.Item>
@@ -65,8 +83,8 @@ export default function Home() {
             </ListGroup.Item>
           </ListGroup>
         </Col>
-        <Col md={10} style={{ borderLeft: "1px solid black", padding: '10px'}}>
-          <Row><h4><strong>Products</strong></h4></Row>
+        <Col md={10} style={{ borderLeft: "1px solid black", padding: '10px', border: '2px solid red'}}>
+          <><h4><strong>Products</strong></h4></>
           {status === "loading" ? <div style={{ width : 'fit-content', margin: '0 auto'}}>
           <ReactLoading type="bars" color="#0000FF"
                 height={100} width={100} /> 
@@ -82,7 +100,5 @@ export default function Home() {
             }
           </Row>  }
         </Col>
-      </Row>
-    </div>
-  );
+      </Row> */
 }
