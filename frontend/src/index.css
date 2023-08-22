@@ -21,7 +21,6 @@
   flex-direction: column;
   gap: 2em;
   padding-top: 1em;
-  /* overflow: hidden; */
 }
 .carousel {
   position: relative;
@@ -145,6 +144,38 @@
 }
 
 .related-items-container .related-item{
-  width: 300px;
+  width: 400px;
   flex-shrink: 0;
+}
+.cart-button-detail-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cart-button-detail{
+  display: flex;
+  width: 50%;
+  justify-content: space-around;
+}
+.add-btn-detail{
+  width: 40%;
+  max-width: 200px;
+}
+@media(width < 450px){
+  .cart-button-detail-container{
+    flex-direction: column;
+    gap: 1em;
+  }
+  .cart-button-detail{
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+  }
+  .add-btn-detail{
+    width: 80%;
+  }
+  .related-items-container .related-item{
+    width: 200px;
+    flex-shrink: 0;
+  }
 }
