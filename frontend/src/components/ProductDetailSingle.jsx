@@ -1,6 +1,6 @@
 import { Button} from "@mui/material";
 import { useNavigate } from 'react-router-dom'
-import {Col, Row} from 'react-bootstrap'
+import {Col, Row, Stack} from 'react-bootstrap'
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import Rating from "./Rating";
@@ -35,13 +35,15 @@ export default function ProductDetailSingle({data}) {
             <h6>category<strong>: {data.category}</strong></h6>
             <Rating value={data.rating} text={data.numLike}/>
             </div>
-            <Row>
               <hr />
-              <Col md={3}><Button onClick={decrement} disabled={itemAmount ? 'false' : 'true'} ><RemoveIcon /></Button></Col>
-              <Col md={3}><big>{itemAmount}</big></Col>
-              <Col md={3}><Button onClick={incerement}><AddIcon /></Button></Col>
-              <Col md={3}><Button onClick={add}><strong>Add</strong></Button></Col>
-            </Row>
+            <div className="cart-button-detail-container">
+            <div className="cart-button-detail">
+              <Button disabled={itemAmount ? false : true} onClick={decrement} variant="contained" ><RemoveIcon /></Button>
+              <big>{itemAmount}</big>
+              <Button onClick={incerement} variant="contained"><AddIcon /></Button>
+            </div>
+              <Button onClick={add} variant="contained" className="add-btn-detail"><strong>Add</strong></Button>
+            </div>
         </div>
         
     </>
