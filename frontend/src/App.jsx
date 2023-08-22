@@ -8,7 +8,6 @@ import { login } from "./store/userSlice";
 import AuthLogin from "./pages/AuthLogin";
 import AuthSignup from "./pages/AuthSignup";
 import Home from "./pages/Home";
-import ProductsLayout from "./pages/ProductsLayout";
 import ProductDetail from "./pages/ProductDetail";
 import UserProducts from "./pages/UserProducts";
 import AddProduct from "./pages/AddProduct";
@@ -31,12 +30,9 @@ export default function App() {
     <>
       <Routes>
         <Route element={<Navbar />}>
-          <Route path="/" element={<Home />} >
+          <Route path="/" element={<Home />}>
             <Route path="/" element={<Products />} />
-            <Route
-                  path="/myProducts"
-                  element={<UserProducts />}
-                />
+            <Route path="/myProducts" element={<UserProducts />} />
           </Route>
           {!isLoggedIn && (
             <>
@@ -51,13 +47,9 @@ export default function App() {
               <Route path="/chart" element={<Cart />} />
               <Route path="/admin/login" element={<AdminLogin />} />
               <Route path="/admin" element={<AdminDashboard />} />
-              <Route path="/products" element={<ProductsLayout />}>
-                
-                
-              </Route>
             </>
           )}
-          <Route path="*" element={<Notfound />}/>
+          <Route path="*" element={<Notfound />} />
         </Route>
       </Routes>
     </>

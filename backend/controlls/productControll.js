@@ -34,6 +34,36 @@ const getTopProducts = async (req, res) => {
   }
 };
 
+
+// @get single product
+// @/:id
+// @get req
+////////////////////////////////////////////////////////////////////////
+const getRelatedItem = async (req, res) => {
+  const {name} = req.params
+  try {
+    const products = await productModel.find({category : name})
+    res.status(200).json({ products });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+// @get single product
+// @/:id
+// @get req
+////////////////////////////////////////////////////////////////////////
+const getProductById = async (req, res) => {
+  const {id} = req.params
+  try {
+    const products = await productModel.findById(id)
+    res.status(200).json({ product: products });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // @adding product
 // @/user/addProducts
 // @post req
@@ -143,4 +173,4 @@ const deleteProduct = async (req, res) => {
     }
 }
 
-export { getAllProducts, addProduct , updateProduct, deleteProduct, getTopProducts};
+export { getAllProducts, addProduct , updateProduct, deleteProduct, getTopProducts, getProductById, getRelatedItem};
