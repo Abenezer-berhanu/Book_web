@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 import Rating from "./Rating";
 import { Box } from "@mui/material";
+import { Col, Row } from "react-bootstrap";
 
 export default function MediaCard({ product }) {
   return (
@@ -29,19 +30,17 @@ export default function MediaCard({ product }) {
           <Rating value={product.rating} text={product.numLike} />
         </Box>
       </CardContent>
-      <CardActions>
-        <Button size="small">
+      <Row class="d-flex p-3">
+        <Col md={6}><Button size="small">
           <Link
             style={{ textDecoration: "none" }}
             to={`/products/${product._id}`}
           >
             <strong>Detail</strong>
           </Link>
-        </Button>
-        <Button variant="contained" size="small">
-          Add to cart
-        </Button>
-      </CardActions>
+        </Button></Col>
+        <Col md={6}><Typography class="text-end">Price: <strong>{product.price}</strong></Typography></Col>
+      </Row>
     </Card>
   );
 }

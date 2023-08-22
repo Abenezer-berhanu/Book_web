@@ -4,6 +4,7 @@ import { API_URI } from '../constants'
 
 const initialState = {
     data: [],
+    value: 2,
     status: 'idle'
 }
 
@@ -13,6 +14,7 @@ const cartSlice = createSlice({
     reducers : {
         addToCart : (state , action) => {
             state.data.push(action.payload)
+            state.value + 1
         },
         removeFromCart : (state, action) => {
             return state.data.filter(item => item._id !== action.payload._id)
