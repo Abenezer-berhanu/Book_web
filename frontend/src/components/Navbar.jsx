@@ -36,6 +36,7 @@ function Navbar() {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
+
   return (
     <>
       <AppBar position="static">
@@ -128,7 +129,7 @@ function Navbar() {
                     <SearchIcon />
                   </IconButton>
                 </Paper>
-                <AddShoppingCartIcon sx={{ fontSize: "1.7em" }} />
+                <div onClick={()=>{navigate('/cart')}}><AddShoppingCartIcon sx={{ fontSize: "1.7em" }} /></div>
               </Stack>
             )}
             {!isLoggedIn && (
