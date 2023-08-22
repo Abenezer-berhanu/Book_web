@@ -1,16 +1,18 @@
 import { Button} from "@mui/material";
 import { useNavigate } from 'react-router-dom'
-import {Col, Row, Stack} from 'react-bootstrap'
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import Rating from "./Rating";
 import { useState } from "react";
+import {useDispatch, useSelector} from 'react-redux'
+import { addToCart } from "../store/cartSlice";
 
 
 export default function ProductDetailSingle({data}) {
   const [itemAmount, setAmount] = useState(1)
+  const [itemTwice, setItemTwice] = useState(false)
 
-
+const dispatch = useDispatch()
   const decrement = () => {
     setAmount(itemAmount - 1)
   }
@@ -18,7 +20,12 @@ export default function ProductDetailSingle({data}) {
       setAmount(itemAmount + 1)
     }
 
-    const add = () => {}
+    const {data : cartData} = useSelector(state => state.cart)
+
+    const add = () => {
+      const arr = {data, itemAmount}
+      dispatch(addToCart(arr))
+    }
 
     const navigate = useNavigate()
   return (

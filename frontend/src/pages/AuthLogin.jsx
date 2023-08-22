@@ -14,6 +14,8 @@ import { useSelector, useDispatch } from "react-redux";
 /////////////////////////////////////////////////////////////////////////////////////////importing from file
 import googleIcon from "../assets/googleIcon.ico.png";
 import { API_URI } from "../constants";
+import CreateCookie from "../../hooks/CreateCookie";
+import Cookies from "js-cookie";
 
 export default function AuthLogin() {
   const [showPassword, setShowPassword] = React.useState(false);
@@ -52,10 +54,17 @@ export default function AuthLogin() {
         const user_data = {
           email: res.data.email,
           name: res.data.name,
-          isAdmin : res.data.isAdmin
+          isAdmin : res.data.isAdmin,
+          user_id : res.data.user_id
         };
         localStorage.setItem("user_data", JSON.stringify(user_data));
-        bake_cookie("token", res.token);
+        // CreateCookie("aki-tok" , res.token)
+        console.log(res)
+        Cookies.set("aki-tok", res.data.token ,{
+          expires : 1,
+          secure : true,
+          path: '/'
+      })
         dispatch(login());
         navigate('/')
       }
