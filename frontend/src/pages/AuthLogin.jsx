@@ -7,14 +7,12 @@ import InputAdornment from "@mui/material/InputAdornment";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import axios from "axios";
-import { bake_cookie } from "sfcookies";
-import { login, logout } from "../store/userSlice";
+import { login} from "../store/userSlice";
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import {  useDispatch } from "react-redux";
 /////////////////////////////////////////////////////////////////////////////////////////importing from file
 import googleIcon from "../assets/googleIcon.ico.png";
 import { API_URI } from "../constants";
-import CreateCookie from "../../hooks/CreateCookie";
 import Cookies from "js-cookie";
 
 export default function AuthLogin() {
@@ -27,7 +25,6 @@ export default function AuthLogin() {
 
   const navigate = useNavigate()
 
-  const isLoggedIn = useSelector((state) => state.loggedIn.isActive);
   const dispatch = useDispatch();
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);

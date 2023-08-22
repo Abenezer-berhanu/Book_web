@@ -14,7 +14,7 @@ import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 import Divider from "@mui/material/Divider";
 import SearchIcon from "@mui/icons-material/Search";
-import { Stack } from "@mui/material";
+import { Grid, Stack } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 //////////////////////////////////////////////////////////////////
 import { useSelector } from "react-redux";
@@ -26,6 +26,8 @@ function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const isLoggedIn = useSelector((state) => state.loggedIn.isActive);
+
+  const {value : cartValue} = useSelector(state => state.cart)
 
   const navigate = useNavigate();
 
@@ -129,7 +131,33 @@ function Navbar() {
                     <SearchIcon />
                   </IconButton>
                 </Paper>
-                <div onClick={()=>{navigate('/cart')}}><AddShoppingCartIcon sx={{ fontSize: "1.7em" }} /></div>
+                <div
+                  onClick={() => {
+                    navigate("/cart");
+                  }}
+                  style={{ position: "relative" }}
+                >
+                  <AddShoppingCartIcon sx={{ fontSize: "1.7em" , cursor: 'pointer'}} />
+                  {cartValue > 0 ? <p
+                    style={{
+                      position: "absolute",
+                      backgroundColor: "#f57242",
+                      width: "18px",
+                      height: "18px",
+                      right: "0",
+                      top: "0",
+                      fontSize: "10px",
+                      display: 'grid',
+                      alignItems: 'center',
+                      textAlign: 'center',
+                      overflow: 'hidden',
+                      borderRadius: "50%",
+                      cursor: 'pointer'
+                    }}
+                  >
+                    {cartValue}
+                  </p> : ''}
+                </div>
               </Stack>
             )}
             {!isLoggedIn && (

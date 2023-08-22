@@ -10,7 +10,7 @@ import { addToCart } from "../store/cartSlice";
 
 export default function ProductDetailSingle({data}) {
   const [itemAmount, setAmount] = useState(1)
-  const [itemTwice, setItemTwice] = useState(false)
+  const { data: allData} = useSelector(state=>state.cart)
 
 const dispatch = useDispatch()
   const decrement = () => {
@@ -20,11 +20,15 @@ const dispatch = useDispatch()
       setAmount(itemAmount + 1)
     }
 
-    const {data : cartData} = useSelector(state => state.cart)
-
     const add = () => {
-      const arr = {data, itemAmount}
-      dispatch(addToCart(arr))
+      const id = data._id
+      const productId = allData.map(item => item.data._id)
+      const isExist = productId.includes(id)
+      if(!isExist){
+        const arr = {data, itemAmount}
+        dispatch(addToCart(arr))
+      }
+      
     }
 
     const navigate = useNavigate()
