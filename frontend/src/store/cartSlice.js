@@ -4,7 +4,7 @@ import { API_URI } from '../constants'
 
 const initialState = {
     data: [],
-    value: 2,
+    value: 0,
     status: 'idle'
 }
 
@@ -14,10 +14,12 @@ const cartSlice = createSlice({
     reducers : {
         addToCart : (state , action) => {
             state.data.push(action.payload)
-            state.value + 1
+            state.value = state.data.length
         },
         removeFromCart : (state, action) => {
-            return state.data.filter(item => item._id !== action.payload._id)
+            let datas = action.payload.map(item => item.data)
+            state.data = state.data.filter(item => item.data._id !== datas[0]._id)
+            state.value = state.data.length
         },
     },
     extraReducers : (builder) => {

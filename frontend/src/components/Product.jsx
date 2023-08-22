@@ -1,18 +1,17 @@
-import * as React from "react";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { Link } from "react-router-dom";
+import { Link,} from "react-router-dom";
 import Rating from "./Rating";
 import { Box } from "@mui/material";
 import { Col, Row } from "react-bootstrap";
 
+
 export default function MediaCard({ product }) {
   return (
     <Card sx={{ margin: "0 0 15px 0" }} className="card">
-      <Link to={`/products/${product._id}`}>
+      <Link to={`http://localhost:5173/products/${product._id}`}>
         <img
           src={product.image}
           alt=""

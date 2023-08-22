@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
 import ReactLoading from 'react-loading'
 import CartSingle from "../components/CartSingle"
-import { Button } from "@mui/material"
+import { Box, Button, Card, CardContent, Typography } from "@mui/material"
 
 
 export default function Cart() {
@@ -30,7 +30,30 @@ export default function Cart() {
     {data.length ? <Button variant="contained" style={{ margin : '2em'}}>Save</Button> : ''}
   </div>
     }
-    {!data.length && <h1>No item found in you cart</h1>}
+    {!data.length && 
+    <Card
+    sx={{
+      display: "flex",
+      justifyContent: "center",
+      textAlign: "center",
+    }}
+  >
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+      }}
+    >
+      <CardContent>
+        <Typography component="div" variant="h5">
+          No product has added to the cart
+        </Typography>
+        <h1>🧐</h1>
+      </CardContent>
+    </Box>
+  </Card>
+    }
     </div>
   )
 }

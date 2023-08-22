@@ -10,7 +10,7 @@ import { addToCart } from "../store/cartSlice";
 
 export default function ProductDetailSingle({data}) {
   const [itemAmount, setAmount] = useState(1)
-  const { data: allData , value} = useSelector(state=>state.cart)
+  const { data: allData} = useSelector(state=>state.cart)
 
 const dispatch = useDispatch()
   const decrement = () => {

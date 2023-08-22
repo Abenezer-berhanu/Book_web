@@ -31,7 +31,7 @@ export default function App() {
       <Routes>
         <Route element={<Navbar />}>
           <Route path="/" element={<Home />}>
-            <Route path="/" element={<Products />} />
+            <Route path="/" element={<Products />}/>
             <Route path="/myProducts" element={<UserProducts />} />
           </Route>
           {!isLoggedIn && (
@@ -42,7 +42,7 @@ export default function App() {
           )}
           {isLoggedIn && (
             <>
-              <Route path="/products/:id" element={<ProductDetail />} />
+              <Route path="/products/:id" element={(<ProductDetail />)} />
               <Route path="/products/addProduct" element={<AddProduct />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/admin/login" element={<AdminLogin />} />
