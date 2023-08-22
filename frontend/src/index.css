@@ -3,7 +3,6 @@
   padding: 0;
   box-sizing: border-box;
   font-family: inter;
-  text-decoration: none;
 }
 @media (width < 500px) {
   .login-checkbox-box {
@@ -84,4 +83,68 @@
   .product-card-container{
     grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
   }
+}
+
+/* working on product detail */
+.product-detail-container{
+  width: 100%;
+  display: grid;
+  align-items: center;
+  width: 70%;
+  border:1px solid rgba(0, 0, 0, 0.551);
+  margin: 0 auto;
+  justify-content: center;
+  text-align: center;
+  border-radius: 7px;
+  padding: 20px;
+  box-shadow: 0px 0px 5px black;
+  gap: 2em;
+}
+.product-detail-container img{
+  height: 300px;
+  width: 100%;
+  object-fit: contain;
+}
+.product-detail-container .description{
+  font-size: 13px;
+  width: 40%;
+  word-break: keep-all;
+  margin: auto;
+}
+@media(width < 700px){
+  .product-detail-container .description{
+    width: 70%;
+  }
+}
+@media(width < 500px){
+  .product-detail-container .description{
+    width: 90%;
+  }
+  .product-detail-container{
+    width: 90%;
+  }
+  .product-detail-container h6{
+    width: 100%;
+    text-align: left;
+    font-size: .9rem;
+  }
+}
+.card{
+  width: 100%;
+}
+.related-items-container{
+  display: flex;
+  overflow: scroll hidden;
+  white-space: nowrap;
+  scroll-snap-type: x mandatory;
+  gap: .5em;
+  padding-left: 15%;
+}
+.related-items-container::-webkit-scrollbar{
+  display: none;
+}
+
+.related-items-container .related-item{
+  width: 300px;
+  flex-shrink: 0;
 }
