@@ -6,6 +6,11 @@ const productSchema = new mongoose.Schema({
     required: true,
     min: 5
   },
+  phone: {
+    type: String,
+    required: true,
+    min:8
+  },
   price: {
     type: Number,
     required: true,

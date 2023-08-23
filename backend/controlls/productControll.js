@@ -80,6 +80,7 @@ const addProduct = async (req, res) => {
     rating,
     numLike,
     amount,
+    phone
   } = req.body.data
   if (
     !name ||
@@ -88,7 +89,8 @@ const addProduct = async (req, res) => {
     !category ||
     // !image ||
     !rating ||
-    !amount
+    !amount ||
+    !phone
   ) {
     res.status(400).json({ message: "all fields are required" });
   }
@@ -105,6 +107,7 @@ const addProduct = async (req, res) => {
       numLike,
       amount,
       user,
+      phone
     });
     res.status(201).json({ product });
   } catch (error) {
