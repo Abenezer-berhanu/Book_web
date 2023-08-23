@@ -37,6 +37,7 @@ function Navbar() {
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+    navigate('/products')
   };
 
   return (
