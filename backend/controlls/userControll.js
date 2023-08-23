@@ -34,9 +34,8 @@ const login = async (req, res) => {
     if (!validPassword) {
       return res.status(401).json({ message: "Incorrect password" });
     }
-    const token = createToken(user._id, user.email);
-    res.cookie("token", token, { httpOnly: true, maxAge: maxAge * 1000 });
-    res.status(200).json({email : user.email , name : user.name});
+    const token = createToken(user.email);
+    res.status(200).json({email : user.email , name : user.name, isAdmin : user.isAdmin, token : token , user_id: user._id});
   } catch (error) {
     console.log(error);
   }

@@ -7,7 +7,7 @@ router.get('/', getAllProducts)
 router.get('/relatedItem/:name', getRelatedItem)
 router.get('/topProducts', getTopProducts)
 router.get('/:id' , getProductById)
-router.post('/addProduct', addProduct)
+router.post('/addProduct/:id', addProduct)
 router.patch('/updateProduct/:id', updateProduct)
 router.delete('/deleteProduct/:id', deleteProduct)
 

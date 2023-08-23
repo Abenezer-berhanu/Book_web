@@ -70,11 +70,7 @@ const getProductById = async (req, res) => {
 ////////////////////////////////////////////////////////////////////////
 
 const addProduct = async (req, res) => {
-    const { cookie } = req.headers;
-  if (!cookie) {
-    res.send(404).json({ error: "Authentication token not found" });
-  }
-
+  const {id} = req.params
   let {
     name,
     price,
@@ -82,27 +78,22 @@ const addProduct = async (req, res) => {
     category,
     image,
     rating,
-    user,
     numLike,
     amount,
-  } = req.body;
+  } = req.body.data
   if (
     !name ||
     !price ||
     !description ||
     !category ||
-    !image ||
+    // !image ||
     !rating ||
-    !numLike ||
     !amount
   ) {
     res.status(400).json({ message: "all fields are required" });
   }
 
-  const tooken = cookie.split("=")[1];
-  const { id } = jwt.verify(tooken, process.env.TOKEN_KEY);
-
-  user = id;
+  let user = id
   try {
     const product = await productModel.create({
       name,
