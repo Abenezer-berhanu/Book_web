@@ -19,7 +19,6 @@
 .home-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 2em;
   padding-top: 1em;
 }
 .carousel {
@@ -30,6 +29,7 @@
   left: 10%;
   background-color: rgb(18, 14, 48);
   overflow: hidden;
+  transform: scale(.8);
 }
 .carousel img {
   height: 60vh;
@@ -48,6 +48,7 @@
 @media (width < 700px) {
   .carousel {
     height: 40vh;
+    transform: scale(1);
   }
   .carousel img {
     height: 40vh;
