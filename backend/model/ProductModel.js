@@ -22,7 +22,7 @@ const productSchema = new mongoose.Schema({
   },
   image: {
     type: String,
-    required: true,
+    // required: true,
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
@@ -35,7 +35,6 @@ const productSchema = new mongoose.Schema({
   },
   numLike: {
     type: Number,
-    required: true,
     default: 0,
   },
   amount : {
