@@ -1,34 +1,53 @@
-import { Button, Typography } from "@mui/material";
+import { Alert, Button, Typography } from "@mui/material";
 import { Form } from "react-bootstrap";
 import {useNavigate} from 'react-router-dom'
 import postProduct from "../api/postProduct";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { getProducts } from "../store/productSlice";
 
 export default function AddProduct() {
+  const [showAlert, setShowAlert] = useState(false)
   const [input, setInput] = useState({
     name:'',
     price:0,
     description: "",
     category: "",
     image: "",
-    rating:0,
-    amount:0
+    rating: 0,
+    amount: 0
   })
+  const [error, setError] = useState('')
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const handleChange = (e) => {
-    
+    setInput(prev => ({
+      ...prev, 
+      [e.target.name] : e.target.value
+    }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault()
+    setError('')
     const id = JSON.parse(localStorage.getItem('user_data')).user_id
-    console.log(input)
-    // postProduct(id, )
+    const res = postProduct(id, input)
+    res.then((result)=>{
+      if(result.status === 201){
+        dispatch(getProducts())
+        setShowAlert(true)
+        {setTimeout(()=>{
+          setShowAlert(false)
+          navigate('/')
+        },3000)}
+      }
+    })
   }
 
   return (
     <>
+    {showAlert && <Alert severity="success" sx={{margin : 'auto', maxWidth : '400px' , width : '50%'}}>You're successfully registered please login/signin</Alert>}
       <Button to='/' variant="contained" sx={{margin : '2em'}}>
         Go Back
       </Button>
@@ -85,6 +104,7 @@ export default function AddProduct() {
             <Form.Group controlId='countInStock' class="border border-secondary p-2">
               <Form.Label>Rating</Form.Label>
               <Form.Control
+              name="rating"
               onChange={handleChange}
                 type='number'
                 placeholder='Enter countInStock'
@@ -95,9 +115,10 @@ export default function AddProduct() {
             <Form.Group controlId='countInStock' class="border border-secondary p-2">
               <Form.Label>Amount</Form.Label>
               <Form.Control
+              name="amount"
               onChange={handleChange}
                 type='number'
-                placeholder='Enter countInStock'
+                placeholder='Enter Quantity'
               ></Form.Control>
             </Form.Group>
 
