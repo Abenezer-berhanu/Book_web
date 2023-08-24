@@ -1,3 +1,4 @@
+import ProductModel from "../model/ProductModel.js";
 import productModel from "../model/ProductModel.js";
 import UserModel from "../model/UserModel.js";
 import jwt from "jsonwebtoken";
@@ -118,6 +119,26 @@ const addProduct = async(req, res) => {
   }
 };
 
+
+// @get user products
+// @/products/userProducts/:id
+// @get req
+////////////////////////////////////////////////////////////////////////
+
+const getUserProducts = async(req, res) => {
+  const {id} = req.params
+  try {
+    const userProduct = await ProductModel.find({user : id}).sort({price : -1})
+    if(!userProduct){
+      res.status(404).json({message : "user has no product"})
+    }
+    res.status(200).json(userProduct)
+  } catch (error) {
+    console.log(error.message)
+  }
+}
+
+
 // @update product
 // @/products/updateProduct/:id
 // @patch req
@@ -170,4 +191,4 @@ const deleteProduct = async (req, res) => {
     }
 }
 
-export { getAllProducts, addProduct , updateProduct, deleteProduct, getTopProducts, getProductById, getRelatedItem};
+export { getAllProducts, addProduct , updateProduct, deleteProduct, getTopProducts, getProductById, getRelatedItem, getUserProducts};

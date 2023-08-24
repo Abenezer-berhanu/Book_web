@@ -4,6 +4,7 @@ import { getProducts } from "../store/productSlice";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Outlet , useNavigate} from "react-router-dom";
+import { getUserProducts } from "../store/userProductSlice";
 
 export default function Home() {
   const [productButton, setProductButton] = useState(true)
@@ -23,6 +24,7 @@ export default function Home() {
   const myProductClick = () => {
     setProductButton(false)
     setmyProductButton(true)
+    dispatch(getUserProducts())
     navigate('/myProducts')
   }
 

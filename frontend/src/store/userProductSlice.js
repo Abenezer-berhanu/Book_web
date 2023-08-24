@@ -8,7 +8,7 @@ const initialState = {
 }
 
 const userProductSlice = createSlice({
-    name: 'uerProducts',
+    name: 'userProduct',
     initialState,
     reducers: {},
     extraReducers : (builder) => {
@@ -22,8 +22,9 @@ const userProductSlice = createSlice({
     }
 })
 
-export const getUserProducts = createAsyncThunk("getUserProducts",async (id, detail) => {
-    const res = await axios(`${API_URI}/products/addProduct/${id}`,{detail})
+const id = JSON.parse(localStorage.getItem("user_data")).user_id;
+export const getUserProducts = createAsyncThunk("getUserProducts",async () => {
+    const res = await axios(`${API_URI}/products/userProducts/${id}`)
     const result = res.data
     return result
 })

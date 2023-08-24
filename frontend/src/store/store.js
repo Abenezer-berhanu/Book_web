@@ -4,7 +4,7 @@ import productSlice from "./productSlice";
 import productDetailSlice from "./productDetailSlice";
 import specificItemSlice from "./specificItem";
 import cartSlice from "./cartSlice";
-import userProductsSlice from "./addUserProductsSlice";
+import userProductSlice from "./userProductSlice";
 
 export default configureStore({
   reducer: {
@@ -13,6 +13,6 @@ export default configureStore({
     productDetail: productDetailSlice,
     relatedItem: specificItemSlice,
     cart: cartSlice,
-    userProducts: userProductsSlice,
+    userProduct : userProductSlice
   },
 });

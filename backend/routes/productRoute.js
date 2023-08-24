@@ -9,6 +9,7 @@ import {
   getTopProducts,
   getProductById,
   getRelatedItem,
+  getUserProducts
 } from "../controlls/productControll.js";
 
 const router = express.Router();
@@ -41,7 +42,8 @@ const upload = multer({ storage, checkFileType });
 router.get("/", getAllProducts);
 router.get("/relatedItem/:name", getRelatedItem);
 router.get("/topProducts", getTopProducts);
-router.get("/:id", getProductById);
+router.get("/:id", getProductById)
+router.get("/userProducts/:id", getUserProducts)
 router.post("/addProduct/:id", upload.single("image"), addProduct);
 router.patch("/updateProduct/:id", updateProduct);
 router.delete("/deleteProduct/:id", deleteProduct);
