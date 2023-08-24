@@ -9,11 +9,12 @@ import { Col, Row } from "react-bootstrap";
 
 
 export default function MediaCard({ product }) {
+  console.log(product)
   return (
     <Card sx={{ margin: "0 0 15px 0" }} className="card">
       <Link to={`http://localhost:5173/products/${product._id}`}>
         <img
-          src={product.image}
+          src={`http://localhost:3000/uploads/${product.image}`}
           alt=""
           title="this product detail"
           className="product-image"

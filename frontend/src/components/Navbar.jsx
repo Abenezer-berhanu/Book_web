@@ -18,8 +18,7 @@ import { Stack } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 //////////////////////////////////////////////////////////////////
 import { useSelector } from "react-redux";
-import logo from "../assets/logo.png";
-import axios from 'axios'
+import logo from "/uploads/image_1692879497954.jpg";
 
 
 

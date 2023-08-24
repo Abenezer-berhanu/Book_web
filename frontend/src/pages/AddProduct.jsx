@@ -32,26 +32,24 @@ export default function AddProduct() {
     }));
   };
 
-
- const handleImageSubmit = async(e) => {
-    setInput((prev) => ({...prev, image : e.target.files[0]}))
-  }
+  const handleImageSubmit = async (e) => {
+    setInput((prev) => ({ ...prev, image: e.target.files[0] }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData()
-    formData.append('name', input.name)
-    formData.append('price', input.price)
-    formData.append('description', input.description)
-    formData.append('category', input.category)
-    formData.append('image', input.image)
-    formData.append('rating', input.rating)
-    formData.append('amount', input.amount)
-    formData.append('phone', input.phone)
+    const formData = new FormData();
+    formData.append("name", input.name);
+    formData.append("price", input.price);
+    formData.append("description", input.description);
+    formData.append("category", input.category);
+    formData.append("image", input.image);
+    formData.append("rating", input.rating);
+    formData.append("amount", input.amount);
+    formData.append("phone", input.phone);
     setError("");
     const id = JSON.parse(localStorage.getItem("user_data")).user_id;
-    // axios.post(`${API_URI}/product/upload`, formData)
-    const res = postProduct(id, formData); 
+    const res = postProduct(id, formData);
     res.then((result) => {
       if (result.status === 201) {
         dispatch(getProducts());
@@ -71,8 +69,6 @@ export default function AddProduct() {
       }
     });
   };
-
- 
 
   return (
     <>
@@ -199,18 +195,18 @@ export default function AddProduct() {
           ></Form.Control>
         </Form.Group>
         {errorAlert && (
-        <Alert
-          severity="error"
-          sx={{ margin: "auto", maxWidth: "400px", width: "50%" }}
-        >
-          {error}
-        </Alert>
-      )}
+          <Alert
+            severity="error"
+            sx={{ margin: "auto", maxWidth: "400px", width: "50%" }}
+          >
+            {error}
+          </Alert>
+        )}
         <Button type="submit" variant="contained" style={{ marginTop: "1rem" }}>
           Post
         </Button>
       </Form>
-      
+
       {showAlert && (
         <Alert
           severity="success"

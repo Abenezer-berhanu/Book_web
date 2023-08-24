@@ -72,7 +72,6 @@ const getProductById = async (req, res) => {
 
 
 const addProduct = async(req, res) => {
-  console.log(req.file)
   const {id} = req.params
   let {
     name,
