@@ -1,6 +1,8 @@
+import ProductModel from "../model/ProductModel.js";
 import productModel from "../model/ProductModel.js";
 import UserModel from "../model/UserModel.js";
 import jwt from "jsonwebtoken";
+import validator from 'validator'
 
 
 
@@ -69,27 +71,31 @@ const getProductById = async (req, res) => {
 // @post req
 ////////////////////////////////////////////////////////////////////////
 
-const addProduct = async (req, res) => {
+
+const addProduct = async(req, res) => {
   const {id} = req.params
   let {
     name,
     price,
     description,
     category,
-    image,
     rating,
     numLike,
     amount,
-  } = req.body.data
+    phone
+  } = req.body
+  let image = req.file.filename
   if (
     !name ||
     !price ||
     !description ||
     !category ||
-    // !image ||
+    !image ||
     !rating ||
-    !amount
-  ) {
+    !amount ||
+    !phone
+  )
+  {
     res.status(400).json({ message: "all fields are required" });
   }
 
@@ -105,12 +111,33 @@ const addProduct = async (req, res) => {
       numLike,
       amount,
       user,
+      phone
     });
     res.status(201).json({ product });
   } catch (error) {
-    console.log(error.message);
+    console.log(error)
   }
 };
+
+
+// @get user products
+// @/products/userProducts/:id
+// @get req
+////////////////////////////////////////////////////////////////////////
+
+const getUserProducts = async(req, res) => {
+  const {id} = req.params
+  try {
+    const userProduct = await ProductModel.find({user : id}).sort({price : -1})
+    if(!userProduct){
+      res.status(404).json({message : "user has no product"})
+    }
+    res.status(200).json(userProduct)
+  } catch (error) {
+    console.log(error.message)
+  }
+}
+
 
 // @update product
 // @/products/updateProduct/:id
@@ -164,4 +191,4 @@ const deleteProduct = async (req, res) => {
     }
 }
 
-export { getAllProducts, addProduct , updateProduct, deleteProduct, getTopProducts, getProductById, getRelatedItem};
+export { getAllProducts, addProduct , updateProduct, deleteProduct, getTopProducts, getProductById, getRelatedItem, getUserProducts};

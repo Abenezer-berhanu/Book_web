@@ -3,7 +3,8 @@ import ReactLoading from "react-loading";
 import { useSelector } from "react-redux";
 
 export default function Products() {
-  const { data, status } = useSelector((state) => state.product);
+  const { data, status } = useSelector((state) => state.userProduct);
+  console.log(data)
 
   return (
     <div className="product-filter-products">
