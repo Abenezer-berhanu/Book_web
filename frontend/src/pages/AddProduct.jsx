@@ -5,6 +5,8 @@ import postProduct from "../api/postProduct";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getProducts } from "../store/productSlice";
+import axios from "axios";
+import { API_URI } from "../constants";
 
 export default function AddProduct() {
   const [showAlert, setShowAlert] = useState(false);
@@ -30,11 +32,26 @@ export default function AddProduct() {
     }));
   };
 
+
+ const handleImageSubmit = async(e) => {
+    setInput((prev) => ({...prev, image : e.target.files[0]}))
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData()
+    formData.append('name', input.name)
+    formData.append('price', input.price)
+    formData.append('description', input.description)
+    formData.append('category', input.category)
+    formData.append('image', input.image)
+    formData.append('rating', input.rating)
+    formData.append('amount', input.amount)
+    formData.append('phone', input.phone)
     setError("");
     const id = JSON.parse(localStorage.getItem("user_data")).user_id;
-    const res = postProduct(id, input);
+    // axios.post(`${API_URI}/product/upload`, formData)
+    const res = postProduct(id, formData); 
     res.then((result) => {
       if (result.status === 201) {
         dispatch(getProducts());
@@ -45,7 +62,7 @@ export default function AddProduct() {
             navigate("/");
           }, 3000);
         }
-      } else if (result.status === 400) {
+      } else if (result.status !== 201) {
         setError(result.data.message);
         setErrorAlert(true);
         setTimeout(() => {
@@ -54,6 +71,8 @@ export default function AddProduct() {
       }
     });
   };
+
+ 
 
   return (
     <>
@@ -134,7 +153,7 @@ export default function AddProduct() {
         <Form.Group controlId="image" class="border border-secondary p-2">
           <Form.Label class="d-flex mb-2">Image</Form.Label>
           <Form.Control
-            onChange={handleChange}
+            onChange={handleImageSubmit}
             name="image"
             label="Choose File"
             type="file"

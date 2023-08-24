@@ -14,13 +14,18 @@ import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 import Divider from "@mui/material/Divider";
 import SearchIcon from "@mui/icons-material/Search";
-import { Grid, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 //////////////////////////////////////////////////////////////////
 import { useSelector } from "react-redux";
 import logo from "../assets/logo.png";
+import axios from 'axios'
+
+
 
 function Navbar() {
+ 
+
   const pages = ["Products", "SELL", "LOGOUT"];
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -39,6 +44,7 @@ function Navbar() {
     setAnchorElNav(null);
     navigate('/products')
   };
+  
 
   return (
     <>

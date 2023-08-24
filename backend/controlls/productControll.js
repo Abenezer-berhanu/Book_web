@@ -1,6 +1,7 @@
 import productModel from "../model/ProductModel.js";
 import UserModel from "../model/UserModel.js";
 import jwt from "jsonwebtoken";
+import validator from 'validator'
 
 
 
@@ -69,29 +70,32 @@ const getProductById = async (req, res) => {
 // @post req
 ////////////////////////////////////////////////////////////////////////
 
-const addProduct = async (req, res) => {
+
+const addProduct = async(req, res) => {
+  console.log(req.file)
   const {id} = req.params
   let {
     name,
     price,
     description,
     category,
-    image,
     rating,
     numLike,
     amount,
     phone
-  } = req.body.data
+  } = req.body
+  let image = req.file.filename
   if (
     !name ||
     !price ||
     !description ||
     !category ||
-    // !image ||
+    !image ||
     !rating ||
     !amount ||
     !phone
-  ) {
+  )
+  {
     res.status(400).json({ message: "all fields are required" });
   }
 
@@ -111,7 +115,7 @@ const addProduct = async (req, res) => {
     });
     res.status(201).json({ product });
   } catch (error) {
-    console.log(error.message);
+    console.log(error)
   }
 };
 

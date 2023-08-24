@@ -4,12 +4,13 @@ const productSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    min: 5
+    min: 5,
+    trim: true
   },
   phone: {
     type: String,
     required: true,
-    min:8
+    min:9
   },
   price: {
     type: Number,
@@ -18,7 +19,7 @@ const productSchema = new mongoose.Schema({
   description: {
     type: String,
     required: true,
-    min: 10
+    min: 5,
   },
   category: {
     type: String,
@@ -27,7 +28,7 @@ const productSchema = new mongoose.Schema({
   },
   image: {
     type: String,
-    // required: true,
+    required: true,
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
@@ -36,16 +37,16 @@ const productSchema = new mongoose.Schema({
   rating: {
     type: Number,
     required: true,
-    default: 0,
+    default: 1,
   },
   numLike: {
     type: Number,
-    default: 0,
+    default: 1,
   },
   amount : {
     type : Number,
     required : true,
-    default : 0
+    default : 1
   }
 });
 
