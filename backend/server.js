@@ -16,6 +16,7 @@ app.use(cors());
 
 app.use(express.static("public"));
 
+
 dotenv.config();
 const port = 3000;
 app.use("/products", productRouter);
