@@ -16,6 +16,7 @@ import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import Products from "./pages/Products";
 import Notfound from "./pages/Notfound";
+import UpdateProduct from "./pages/UpdateProduct";
 ///////////////////////////////////////////////////////////importing from file
 
 export default function App() {
@@ -44,6 +45,7 @@ export default function App() {
             <>
               <Route path="/products/:id" element={(<ProductDetail />)} />
               <Route path="/products/addProduct" element={<AddProduct />} />
+              <Route path="/products/updateProduct" element={<UpdateProduct />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/admin/login" element={<AdminLogin />} />
               <Route path="/admin" element={<AdminDashboard />} />

@@ -4,8 +4,6 @@ import { useSelector } from "react-redux";
 
 export default function Products() {
   const { data, status } = useSelector((state) => state.userProduct);
-  console.log(data)
-
   return (
     <div className="product-filter-products">
       <div className="home-products">

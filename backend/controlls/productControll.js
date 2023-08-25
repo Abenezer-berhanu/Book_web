@@ -150,20 +150,18 @@ const updateProduct = async(req, res) => {
     price,
     description,
     category,
-    image,
-    rating,
     amount,
+    phone
   } = req.body;
-  const id = req.params.id
+  const {id}= req.params
   
   const updatedProduct = await productModel.findByIdAndUpdate(id, {
     name,
     price,
     description,
     category,
-    image,
-    rating,
     amount,
+    phone
   })
   res.status(200).json({updatedProduct})
 };
