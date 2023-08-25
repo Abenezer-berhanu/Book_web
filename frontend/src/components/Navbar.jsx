@@ -17,8 +17,9 @@ import SearchIcon from "@mui/icons-material/Search";
 import { Stack } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 //////////////////////////////////////////////////////////////////
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import logo from "/uploads/image_1692879497954.jpg";
+import { getCartItems , postCartItems} from "../store/cartSlice";
 
 function Navbar() {
   const pages = ["Products", "SELL", "LOGOUT"];
@@ -30,6 +31,8 @@ function Navbar() {
   const { value: cartValue } = useSelector((state) => state.cart);
 
   const navigate = useNavigate();
+
+  const dispatch = useDispatch()
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -134,6 +137,7 @@ function Navbar() {
                 </Paper>
                 <div
                   onClick={() => {
+                    dispatch(getCartItems())
                     navigate("/cart");
                   }}
                   style={{ position: "relative" }}

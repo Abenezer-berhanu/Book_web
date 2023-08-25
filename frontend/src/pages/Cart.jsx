@@ -12,6 +12,10 @@ export default function Cart() {
   for(let i = 0; i < prices.length; i++){
     totalPrice = totalPrice + prices[i]*itemAmount[i]
   }
+
+  const handleCartSave = () => {
+    
+  }
   return (
     <div>
       {data.length ? <h4>Total Price: {totalPrice}</h4> : ''}
@@ -27,7 +31,7 @@ export default function Cart() {
     {
       <CartSingle datas={data} />
     }
-    {data.length ? <Button variant="contained" style={{ margin : '2em'}}>Save</Button> : ''}
+    {data.length ? <Button variant="contained" style={{ margin : '2em'}} onClick={handleCartSave}>Save</Button> : ''}
   </div>
     }
     {!data.length && 

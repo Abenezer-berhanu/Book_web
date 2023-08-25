@@ -5,7 +5,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import Rating from "./Rating";
 import { useState } from "react";
 import {useDispatch, useSelector} from 'react-redux'
-import { addToCart } from "../store/cartSlice";
+import { addToCart, postCartItems } from "../store/cartSlice";
 
 
 export default function ProductDetailSingle({data}) {
@@ -27,6 +27,7 @@ const dispatch = useDispatch()
       if(!isExist){
         const arr = {data, itemAmount}
         dispatch(addToCart(arr))
+        dispatch(postCartItems(arr))
       }
       
     }
@@ -36,7 +37,7 @@ const dispatch = useDispatch()
     <>
         <Button variant="contained" size="small" sx={{ margin: '2em'}} onClick={()=>{navigate('/')}}>Go Back</Button>
         <div className="product-detail-container">
-            <img src={data.image} alt="" />
+            <img src={`http://localhost:3000/uploads/${data.image}`} alt="" />
             <div className="text-comment">
             <h5 className="name"><strong>{data.name}</strong></h5>
             <div className="description">{data.description}</div>
@@ -49,11 +50,11 @@ const dispatch = useDispatch()
               <hr />
             <div className="cart-button-detail-container">
             <div className="cart-button-detail">
-              <Button disabled={itemAmount ? false : true} onClick={decrement} variant="contained" ><RemoveIcon /></Button>
+              <Button disabled={itemAmount ? false : true} onClick={decrement} variant="contained"><RemoveIcon /></Button>
               <big>{itemAmount}</big>
-              <Button onClick={incerement} variant="contained"><AddIcon /></Button>
+              <Button onClick={incerement} variant="contained" ><AddIcon /></Button>
             </div>
-              <Button onClick={add} variant="contained" className="add-btn-detail"><strong>Add</strong></Button>
+              <Button onClick={add} variant="contained" className="add-btn-detail" ><strong>Add</strong></Button>
             </div>
         </div>
         

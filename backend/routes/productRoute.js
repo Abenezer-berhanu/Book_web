@@ -9,7 +9,7 @@ import {
   getTopProducts,
   getProductById,
   getRelatedItem,
-  getUserProducts
+  getUserProducts,
 } from "../controlls/productControll.js";
 
 const router = express.Router();

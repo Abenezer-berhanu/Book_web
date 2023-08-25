@@ -34,11 +34,20 @@ const cartSlice = createSlice({
     }
 })
 
-export const getCartItems = createAsyncThunk( async() =>{
-    const res = await axios(`${API_URI}/cart`)
-    const result = res.data
+export const getCartItems = createAsyncThunk('getting cart', async() => {
+    const res = await axios(`${API_URI}/products/cart`)
+    const result = await res.data
+    console.log(result)
     return result
 })
+
+export const postCartItems = createAsyncThunk("post cart", async(data) =>{
+    const res = await axios.post(`${API_URI}/products/cart`, data)
+    const result = res.data
+    console.log(result)
+})
+
+
 
 export default cartSlice.reducer
 export const {addToCart, removeFromCart} = cartSlice.actions
