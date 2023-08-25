@@ -123,12 +123,10 @@
   .product-detail-container .description{
     width: 70%;
   }
+
 }
 @media(width < 500px){
   .product-detail-container .description{
-    width: 90%;
-  }
-  .product-detail-container{
     width: 90%;
   }
   .product-detail-container h6{

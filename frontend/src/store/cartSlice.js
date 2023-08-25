@@ -17,9 +17,8 @@ const cartSlice = createSlice({
             state.value = state.data.length
         },
         removeFromCart : (state, action) => {
-            let datas = action.payload.map(item => item.data)
-            state.data = state.data.filter(item => item.data._id !== datas[0]._id)
-            state.value = state.data.length
+            state.data = state.data.respnose.map(item => item._id !== action.payload._id)
+            state.value = state.data.response.length
         },
     },
     extraReducers : (builder) => {
@@ -34,11 +33,14 @@ const cartSlice = createSlice({
     }
 })
 
-export const getCartItems = createAsyncThunk( async() =>{
+export const getCartItems = createAsyncThunk('getting cart', async() => {
     const res = await axios(`${API_URI}/cart`)
-    const result = res.data
+    const result = await res.data
     return result
 })
+
+
+
 
 export default cartSlice.reducer
 export const {addToCart, removeFromCart} = cartSlice.actions

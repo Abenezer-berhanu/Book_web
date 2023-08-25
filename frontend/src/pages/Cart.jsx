@@ -1,20 +1,26 @@
 import { useSelector } from "react-redux"
 import ReactLoading from 'react-loading'
 import CartSingle from "../components/CartSingle"
-import { Box, Button, Card, CardContent, Typography } from "@mui/material"
+import { Box, Card, CardContent, Typography } from "@mui/material"
+import { useEffect } from "react"
+import { getCartItems } from "../store/cartSlice"
+import { useDispatch } from "react-redux"
 
 
 export default function Cart() {
   const {data, status} = useSelector(state => state.cart)
-  const prices = data.map(item => item.data.price)
-  const itemAmount = data.map(item => item.itemAmount)
-  let totalPrice = 0
-  for(let i = 0; i < prices.length; i++){
-    totalPrice = totalPrice + prices[i]*itemAmount[i]
-  }
+  const prices = data.response.map(item => item.price)
+  let totalPrice = prices.reduce((acc, cur) => acc + cur)
+
+  const dispatch = useDispatch()
+
+  useEffect(()=>{
+    dispatch(getCartItems())
+  },[])
+
   return (
     <div>
-      {data.length ? <h4>Total Price: {totalPrice}</h4> : ''}
+      {data.response.length ? <h4>Total Price: {totalPrice}</h4> : ''}
       {
         status === 'loading' ? <div style={{ width: "fit-content", margin: "0 auto" }}>
         <ReactLoading
@@ -25,12 +31,11 @@ export default function Cart() {
         />
   </div> : <div>
     {
-      <CartSingle datas={data} />
+      <CartSingle datas={data.response} />
     }
-    {data.length ? <Button variant="contained" style={{ margin : '2em'}}>Save</Button> : ''}
   </div>
     }
-    {!data.length && 
+    {!data.response.length && 
     <Card
     sx={{
       display: "flex",
