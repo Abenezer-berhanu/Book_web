@@ -5,7 +5,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import Rating from "./Rating";
 import { useState } from "react";
 import {useDispatch, useSelector} from 'react-redux'
-import { addToCart, postCartItems } from "../store/cartSlice";
+import { addToCart} from "../store/cartSlice";
 
 
 export default function ProductDetailSingle({data}) {
@@ -27,7 +27,6 @@ const dispatch = useDispatch()
       if(!isExist){
         const arr = {data, itemAmount}
         dispatch(addToCart(arr))
-        dispatch(postCartItems(arr))
       }
       
     }

@@ -5,12 +5,9 @@ import { removeFromCart } from "../store/cartSlice";
 
 export default function CartSingle({ datas }) {
   const dispatch = useDispatch();
-  
-  const removeItem = () => {
-    dispatch(removeFromCart(datas));
-  };
+  console.log(datas)
   const cards = datas.map((data) => (
-    <div key={data.data._id}>
+    <div key={data._id}>
       <Card
         style={{
           width: "50%",
@@ -20,7 +17,7 @@ export default function CartSingle({ datas }) {
       >
         <Card.Img
           variant="top"
-          src={data.data.image}
+          src={data.image}
           style={{
             width: "100px",
             height: "100px",
@@ -29,8 +26,8 @@ export default function CartSingle({ datas }) {
           }}
         />
         <Card.Body>
-          <Card.Title>{data.data.name}</Card.Title>
-          <Card.Text>${data.data.price}</Card.Text>
+          <Card.Title>{data.name}</Card.Title>
+          <Card.Text>${data.price}</Card.Text>
           <Row>
             <Col>
               <Card.Text>
@@ -39,13 +36,13 @@ export default function CartSingle({ datas }) {
             </Col>
             <Col>
               <Card.Text>
-                Total: <strong>{data.itemAmount * data.data.price}</strong>
+                Total: <strong>{data.itemAmount * data.price}</strong>
               </Card.Text>
             </Col>
           </Row>
         </Card.Body>
         <Card.Footer style={{ backgroundColor: "white" }}>
-          <Button variant="contained" onClick={removeItem}>
+          <Button variant="contained" onClick={()=>{dispatch(removeFromCart(data))}}>
             Remove Item
           </Button>
         </Card.Footer>
